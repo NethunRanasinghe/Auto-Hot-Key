@@ -1,0 +1,1 @@
+### This is an example of something similar to a keycode(sequence). Change it according to your preference and usecase.
