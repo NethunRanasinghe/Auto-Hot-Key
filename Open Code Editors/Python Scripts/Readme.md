@@ -1,1 +1,1 @@
-## This is implemented using AHK + Python Scripts
+## These are implemented using either completely from python or python + AHK
