@@ -1,5 +1,6 @@
 from pynput import keyboard
 import time
+from datetime import datetime
 
 Snippets = {
     'hh1': '# ',
@@ -10,7 +11,11 @@ Snippets = {
 
 typing_word = []
 
-
+def logging(log):
+    with open ('log','a') as file:
+        file.write(f'{log}\n')
+        file.close()
+    
 def replace_word(key, snippet):
     try:
         # Delete Key
@@ -24,7 +29,8 @@ def replace_word(key, snippet):
         keyboard.Controller().type(snippet)
 
     except Exception as ex:
-        print(ex)
+        exception_to_log = f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")} : {ex}'
+        logging(exception_to_log)
 
 
 def check_for_snippet(typedword):
@@ -45,7 +51,6 @@ def on_release(key):
     if key == keyboard.Key.space:
         # Check for any matching snippets
         typed_word = ''.join([str(letter) for letter in typing_word])
-        print(typed_word)
 
         if check_for_snippet(typed_word):
             replace_word(typed_word, Snippets[typed_word])
@@ -57,7 +62,7 @@ def on_release(key):
     if key == keyboard.Key.backspace:
         if(len(typing_word) > 0):
             typing_word.pop()
-
+    
 # Collect events until released
 with keyboard.Listener(
         on_press=on_press,
