@@ -6,7 +6,18 @@ Snippets = {
     'hh1': '# ',
     'hh2': '## ',
     'hh3': '### ',
-    'hh4': '#### '
+    'hh4': '#### ',
+    '!note' : '> [!note]',
+    '!tldr' : '> [!tldr]',
+    '!tip' : '> [!tip]',
+    '!success' : '> [!success]',
+    '!question' : '> [!question]',
+    '!fail' : '> [!fail]',
+    '!error' : '> [!error]',
+    '!bug' : '> [!bug]',
+    '!example' : '> [!example]',
+    '!quote' : '> [!quote]',
+    '!all' : '> [!note]\n\n> [!tldr]\n\n> [!tip]\n\n> [!success]\n\n> [!question]\n\n> [!fail]\n\n> [!error]\n\n> [!bug]\n\n> [!example]\n\n> [!quote]\n\n'
 }
 
 typing_word = []
@@ -45,6 +56,9 @@ def on_press(key):
         if key == keyboard.Key.backspace:
             if(len(typing_word) > 0):
                 typing_word.pop()
+        
+        if key == keyboard.Key.enter:
+            typing_word.clear()
 
 
 def on_release(key):
@@ -62,6 +76,9 @@ def on_release(key):
     if key == keyboard.Key.backspace:
         if(len(typing_word) > 0):
             typing_word.pop()
+
+    if key == keyboard.Key.enter:
+        typing_word.clear()
     
 # Collect events until released
 with keyboard.Listener(
